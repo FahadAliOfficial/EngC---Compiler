@@ -1,0 +1,25 @@
+<Token Name> : <Regex Expression>
+
+KEYWORD       : if|else|for|while|main|do
+TYPE	      : integer|float|string|bool
+IDENTIFIER    : [a-zA-Z_][a-zA-Z_0-9]*
+FLOAT         : \d+\.\d+          
+NUMBER        : \d+               
+STRING        : "[^"\n]*"           
+BOOL          : true|false 
+ARITHMETIC_OP : add|subtract|multiply|divide|remainder|power
+RELATIONAL_OP : \bis equal to\b|\bis not equal to\b|\bis greater than\b|\bis less than\b|\bis greater than or equal to\b|\bis less than or equal to\b
+LOGICAL_OP    : and|or|not
+ASSIGN_OP     : \bequal to\b|\badd equal to\b|\bsubtract equal to\b|\bmultiply equal to\b|\bdivide equal to\b|\bremainder equal to\b
+COMMA         : comma
+DOT           : dot
+COLON         : colon
+SEMI          : semicolon
+LPAREN        : \(
+RPAREN        : \)
+LBRACE        : \{
+RBRACE        : \}
+LBRACKET      : \[
+RBRACKET      : \]
+WHITESPACE    : [ \t]+
+TERMINATOR    : \n
