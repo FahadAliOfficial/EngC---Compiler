@@ -1,0 +1,66 @@
+Parsing started
+Tokens: ['TYPE(integer)', 'KEYWORD(main)', 'LPAREN(()', 'RPAREN())', 'LBRACE({)', 'TYPE(integer)', 'IDENTIFIER(a)', 'ASSIGN_OP(equals to)', 'NUMBER(10)', 'KEYWORD(return)', 'IDENTIFIER(a)', 'SEMI(semicolon)', 'RBRACE(})', '$($)']
+
+Stack: [0]
+Semantic stack depth: 0
+Next token: TYPE(integer) -> terminal: integer
+Action: shift 1
+
+Stack: [0, 1]
+Semantic stack depth: 1
+Next token: KEYWORD(main) -> terminal: main
+Action: reduce ('Type', 0)
+
+Stack: [0, 7]
+Semantic stack depth: 1
+Next token: KEYWORD(main) -> terminal: main
+Action: shift 8
+
+Stack: [0, 7, 8]
+Semantic stack depth: 2
+Next token: LPAREN(() -> terminal: (
+Action: shift 9
+
+Stack: [0, 7, 8, 9]
+Semantic stack depth: 3
+Next token: RPAREN()) -> terminal: )
+Action: shift 10
+
+Stack: [0, 7, 8, 9, 10]
+Semantic stack depth: 4
+Next token: LBRACE({) -> terminal: {
+Action: shift 11
+
+Stack: [0, 7, 8, 9, 10, 11]
+Semantic stack depth: 5
+Next token: TYPE(integer) -> terminal: integer
+Action: shift 16
+
+Stack: [0, 7, 8, 9, 10, 11, 16]
+Semantic stack depth: 6
+Next token: IDENTIFIER(a) -> terminal: IDENTIFIER
+Action: reduce ('Type', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 28]
+Semantic stack depth: 6
+Next token: IDENTIFIER(a) -> terminal: IDENTIFIER
+Action: shift 53
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53]
+Semantic stack depth: 7
+Next token: ASSIGN_OP(equals to) -> terminal: equals to
+Action: shift 89
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89]
+Semantic stack depth: 8
+Next token: NUMBER(10) -> terminal: NUMBER
+Action: shift 35
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89, 35]
+Semantic stack depth: 9
+Next token: KEYWORD(return) -> terminal: return
+ERROR: No action for state 35 and terminal return
+Expected one of: ['semicolon', 'power', 'is equal to', 'is not equal to', 'is greater than', 'is less than', 'is greater than or equal to', 'is less than or equal to', 'multiply', 'divide', 'remainder', 'add', 'subtract', 'and', 'or']
+Error at token index 9: KEYWORD(return)
+Previous token: NUMBER(10)
+Possible syntax error: Unbalanced brackets/braces/parentheses (open: 2, closed: 1)

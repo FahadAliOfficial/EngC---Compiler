@@ -1,0 +1,643 @@
+Parsing started
+Tokens: ['TYPE(integer)', 'KEYWORD(main)', 'LPAREN(()', 'RPAREN())', 'LBRACE({)', 'TYPE(integer)', 'IDENTIFIER(x)', 'ASSIGN_OP(equals to)', 'NUMBER(5)', 'SEMI(semicolon)', 'TYPE(integer)', 'IDENTIFIER(y)', 'ASSIGN_OP(equals to)', 'NUMBER(10)', 'SEMI(semicolon)', 'TYPE(boolean)', 'IDENTIFIER(result)', 'ASSIGN_OP(equals to)', 'IDENTIFIER(x)', 'RELATIONAL_OP(is less than)', 'IDENTIFIER(y)', 'SEMI(semicolon)', 'KEYWORD(if)', 'LPAREN(()', 'IDENTIFIER(result)', 'RPAREN())', 'LBRACE({)', 'TYPE(integer)', 'IDENTIFIER(sum)', 'ASSIGN_OP(equals to)', 'IDENTIFIER(x)', 'ARITHMETIC_OP(add)', 'IDENTIFIER(y)', 'SEMI(semicolon)', 'RBRACE(})', 'KEYWORD(else)', 'LBRACE({)', 'TYPE(integer)', 'IDENTIFIER(sub)', 'ASSIGN_OP(equals to)', 'IDENTIFIER(x)', 'ARITHMETIC_OP(subtract)', 'IDENTIFIER(y)', 'SEMI(semicolon)', 'RBRACE(})', 'RBRACE(})', '$($)']
+
+Stack: [0]
+Semantic stack depth: 0
+Next token: TYPE(integer) -> terminal: integer
+Action: shift 1
+
+Stack: [0, 1]
+Semantic stack depth: 1
+Next token: KEYWORD(main) -> terminal: main
+Action: reduce ('Type', 0)
+
+Stack: [0, 7]
+Semantic stack depth: 1
+Next token: KEYWORD(main) -> terminal: main
+Action: shift 8
+
+Stack: [0, 7, 8]
+Semantic stack depth: 2
+Next token: LPAREN(() -> terminal: (
+Action: shift 9
+
+Stack: [0, 7, 8, 9]
+Semantic stack depth: 3
+Next token: RPAREN()) -> terminal: )
+Action: shift 10
+
+Stack: [0, 7, 8, 9, 10]
+Semantic stack depth: 4
+Next token: LBRACE({) -> terminal: {
+Action: shift 11
+
+Stack: [0, 7, 8, 9, 10, 11]
+Semantic stack depth: 5
+Next token: TYPE(integer) -> terminal: integer
+Action: shift 16
+
+Stack: [0, 7, 8, 9, 10, 11, 16]
+Semantic stack depth: 6
+Next token: IDENTIFIER(x) -> terminal: IDENTIFIER
+Action: reduce ('Type', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 28]
+Semantic stack depth: 6
+Next token: IDENTIFIER(x) -> terminal: IDENTIFIER
+Action: shift 53
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53]
+Semantic stack depth: 7
+Next token: ASSIGN_OP(equals to) -> terminal: equals to
+Action: shift 89
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89]
+Semantic stack depth: 8
+Next token: NUMBER(5) -> terminal: NUMBER
+Action: shift 35
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89, 35]
+Semantic stack depth: 9
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Factor', 1)
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89, 47]
+Semantic stack depth: 9
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('PowerExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89, 46]
+Semantic stack depth: 9
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Term', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89, 45]
+Semantic stack depth: 9
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('ArithmeticExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89, 44]
+Semantic stack depth: 9
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('RelationalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89, 43]
+Semantic stack depth: 9
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('LogicalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89, 42]
+Semantic stack depth: 9
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Expression', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 28, 53, 89, 133]
+Semantic stack depth: 9
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Declaration', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 23]
+Semantic stack depth: 6
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: shift 51
+
+Stack: [0, 7, 8, 9, 10, 11, 23, 51]
+Semantic stack depth: 7
+Next token: TYPE(integer) -> terminal: integer
+Action: reduce ('Statement', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 22]
+Semantic stack depth: 6
+Next token: TYPE(integer) -> terminal: integer
+Action: reduce ('StatementList', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21]
+Semantic stack depth: 6
+Next token: TYPE(integer) -> terminal: integer
+Action: shift 16
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 16]
+Semantic stack depth: 7
+Next token: IDENTIFIER(y) -> terminal: IDENTIFIER
+Action: reduce ('Type', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28]
+Semantic stack depth: 7
+Next token: IDENTIFIER(y) -> terminal: IDENTIFIER
+Action: shift 53
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53]
+Semantic stack depth: 8
+Next token: ASSIGN_OP(equals to) -> terminal: equals to
+Action: shift 89
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89]
+Semantic stack depth: 9
+Next token: NUMBER(10) -> terminal: NUMBER
+Action: shift 35
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 35]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Factor', 1)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 47]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('PowerExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 46]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Term', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 45]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('ArithmeticExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 44]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('RelationalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 43]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('LogicalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 42]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Expression', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 133]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Declaration', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 23]
+Semantic stack depth: 7
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: shift 51
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 23, 51]
+Semantic stack depth: 8
+Next token: TYPE(boolean) -> terminal: boolean
+Action: reduce ('Statement', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 50]
+Semantic stack depth: 7
+Next token: TYPE(boolean) -> terminal: boolean
+Action: reduce ('StatementList', 1)
+
+Stack: [0, 7, 8, 9, 10, 11, 21]
+Semantic stack depth: 6
+Next token: TYPE(boolean) -> terminal: boolean
+Action: shift 19
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 19]
+Semantic stack depth: 7
+Next token: IDENTIFIER(result) -> terminal: IDENTIFIER
+Action: reduce ('Type', 3)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28]
+Semantic stack depth: 7
+Next token: IDENTIFIER(result) -> terminal: IDENTIFIER
+Action: shift 53
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53]
+Semantic stack depth: 8
+Next token: ASSIGN_OP(equals to) -> terminal: equals to
+Action: shift 89
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89]
+Semantic stack depth: 9
+Next token: IDENTIFIER(x) -> terminal: IDENTIFIER
+Action: shift 34
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 34]
+Semantic stack depth: 10
+Next token: RELATIONAL_OP(is less than) -> terminal: is less than
+Action: reduce ('Factor', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 47]
+Semantic stack depth: 10
+Next token: RELATIONAL_OP(is less than) -> terminal: is less than
+Action: reduce ('PowerExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 46]
+Semantic stack depth: 10
+Next token: RELATIONAL_OP(is less than) -> terminal: is less than
+Action: reduce ('Term', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 45]
+Semantic stack depth: 10
+Next token: RELATIONAL_OP(is less than) -> terminal: is less than
+Action: reduce ('ArithmeticExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 44]
+Semantic stack depth: 10
+Next token: RELATIONAL_OP(is less than) -> terminal: is less than
+Action: shift 81
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 44, 81]
+Semantic stack depth: 11
+Next token: IDENTIFIER(y) -> terminal: IDENTIFIER
+Action: shift 114
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 44, 81, 114]
+Semantic stack depth: 12
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Factor', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 44, 81, 123]
+Semantic stack depth: 12
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('PowerExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 44, 81, 122]
+Semantic stack depth: 12
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Term', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 44, 81, 121]
+Semantic stack depth: 12
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('ArithmeticExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 44, 81, 126]
+Semantic stack depth: 12
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('RelationalExpr', 4)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 43]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('LogicalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 42]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Expression', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 28, 53, 89, 133]
+Semantic stack depth: 10
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Declaration', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 23]
+Semantic stack depth: 7
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: shift 51
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 23, 51]
+Semantic stack depth: 8
+Next token: KEYWORD(if) -> terminal: if
+Action: reduce ('Statement', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 50]
+Semantic stack depth: 7
+Next token: KEYWORD(if) -> terminal: if
+Action: reduce ('StatementList', 1)
+
+Stack: [0, 7, 8, 9, 10, 11, 21]
+Semantic stack depth: 6
+Next token: KEYWORD(if) -> terminal: if
+Action: shift 12
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12]
+Semantic stack depth: 7
+Next token: LPAREN(() -> terminal: (
+Action: shift 30
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30]
+Semantic stack depth: 8
+Next token: IDENTIFIER(result) -> terminal: IDENTIFIER
+Action: shift 55
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 55]
+Semantic stack depth: 9
+Next token: RPAREN()) -> terminal: )
+Action: reduce ('Factor', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 67]
+Semantic stack depth: 9
+Next token: RPAREN()) -> terminal: )
+Action: reduce ('PowerExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 66]
+Semantic stack depth: 9
+Next token: RPAREN()) -> terminal: )
+Action: reduce ('Term', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 65]
+Semantic stack depth: 9
+Next token: RPAREN()) -> terminal: )
+Action: reduce ('ArithmeticExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 64]
+Semantic stack depth: 9
+Next token: RPAREN()) -> terminal: )
+Action: reduce ('RelationalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 63]
+Semantic stack depth: 9
+Next token: RPAREN()) -> terminal: )
+Action: reduce ('LogicalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 62]
+Semantic stack depth: 9
+Next token: RPAREN()) -> terminal: )
+Action: reduce ('Expression', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 61]
+Semantic stack depth: 9
+Next token: RPAREN()) -> terminal: )
+Action: reduce ('Condition', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68]
+Semantic stack depth: 9
+Next token: RPAREN()) -> terminal: )
+Action: shift 106
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106]
+Semantic stack depth: 10
+Next token: LBRACE({) -> terminal: {
+Action: shift 158
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158]
+Semantic stack depth: 11
+Next token: TYPE(integer) -> terminal: integer
+Action: shift 16
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 16]
+Semantic stack depth: 12
+Next token: IDENTIFIER(sum) -> terminal: IDENTIFIER
+Action: reduce ('Type', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28]
+Semantic stack depth: 12
+Next token: IDENTIFIER(sum) -> terminal: IDENTIFIER
+Action: shift 53
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53]
+Semantic stack depth: 13
+Next token: ASSIGN_OP(equals to) -> terminal: equals to
+Action: shift 89
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89]
+Semantic stack depth: 14
+Next token: IDENTIFIER(x) -> terminal: IDENTIFIER
+Action: shift 34
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 34]
+Semantic stack depth: 15
+Next token: ARITHMETIC_OP(add) -> terminal: add
+Action: reduce ('Factor', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 47]
+Semantic stack depth: 15
+Next token: ARITHMETIC_OP(add) -> terminal: add
+Action: reduce ('PowerExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 46]
+Semantic stack depth: 15
+Next token: ARITHMETIC_OP(add) -> terminal: add
+Action: reduce ('Term', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 45]
+Semantic stack depth: 15
+Next token: ARITHMETIC_OP(add) -> terminal: add
+Action: reduce ('ArithmeticExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 44]
+Semantic stack depth: 15
+Next token: ARITHMETIC_OP(add) -> terminal: add
+Action: shift 76
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 44, 76]
+Semantic stack depth: 16
+Next token: IDENTIFIER(y) -> terminal: IDENTIFIER
+Action: shift 34
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 44, 76, 34]
+Semantic stack depth: 17
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Factor', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 44, 76, 47]
+Semantic stack depth: 17
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('PowerExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 44, 76, 46]
+Semantic stack depth: 17
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Term', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 44, 76, 112]
+Semantic stack depth: 17
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('ArithmeticExpr', 1)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 44]
+Semantic stack depth: 15
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('RelationalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 43]
+Semantic stack depth: 15
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('LogicalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 42]
+Semantic stack depth: 15
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Expression', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 28, 53, 89, 133]
+Semantic stack depth: 15
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Declaration', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 23]
+Semantic stack depth: 12
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: shift 51
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 23, 51]
+Semantic stack depth: 13
+Next token: RBRACE(}) -> terminal: }
+Action: reduce ('Statement', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 22]
+Semantic stack depth: 12
+Next token: RBRACE(}) -> terminal: }
+Action: reduce ('StatementList', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176]
+Semantic stack depth: 12
+Next token: RBRACE(}) -> terminal: }
+Action: shift 193
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193]
+Semantic stack depth: 13
+Next token: KEYWORD(else) -> terminal: else
+Action: shift 197
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197]
+Semantic stack depth: 14
+Next token: LBRACE({) -> terminal: {
+Action: shift 200
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200]
+Semantic stack depth: 15
+Next token: TYPE(integer) -> terminal: integer
+Action: shift 16
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 16]
+Semantic stack depth: 16
+Next token: IDENTIFIER(sub) -> terminal: IDENTIFIER
+Action: reduce ('Type', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28]
+Semantic stack depth: 16
+Next token: IDENTIFIER(sub) -> terminal: IDENTIFIER
+Action: shift 53
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53]
+Semantic stack depth: 17
+Next token: ASSIGN_OP(equals to) -> terminal: equals to
+Action: shift 89
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89]
+Semantic stack depth: 18
+Next token: IDENTIFIER(x) -> terminal: IDENTIFIER
+Action: shift 34
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 34]
+Semantic stack depth: 19
+Next token: ARITHMETIC_OP(subtract) -> terminal: subtract
+Action: reduce ('Factor', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 47]
+Semantic stack depth: 19
+Next token: ARITHMETIC_OP(subtract) -> terminal: subtract
+Action: reduce ('PowerExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 46]
+Semantic stack depth: 19
+Next token: ARITHMETIC_OP(subtract) -> terminal: subtract
+Action: reduce ('Term', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 45]
+Semantic stack depth: 19
+Next token: ARITHMETIC_OP(subtract) -> terminal: subtract
+Action: reduce ('ArithmeticExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 44]
+Semantic stack depth: 19
+Next token: ARITHMETIC_OP(subtract) -> terminal: subtract
+Action: shift 77
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 44, 77]
+Semantic stack depth: 20
+Next token: IDENTIFIER(y) -> terminal: IDENTIFIER
+Action: shift 34
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 44, 77, 34]
+Semantic stack depth: 21
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Factor', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 44, 77, 47]
+Semantic stack depth: 21
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('PowerExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 44, 77, 46]
+Semantic stack depth: 21
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Term', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 44, 77, 113]
+Semantic stack depth: 21
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('ArithmeticExpr', 2)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 44]
+Semantic stack depth: 19
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('RelationalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 43]
+Semantic stack depth: 19
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('LogicalExpr', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 42]
+Semantic stack depth: 19
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Expression', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 28, 53, 89, 133]
+Semantic stack depth: 19
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: reduce ('Declaration', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 23]
+Semantic stack depth: 16
+Next token: SEMI(semicolon) -> terminal: semicolon
+Action: shift 51
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 23, 51]
+Semantic stack depth: 17
+Next token: RBRACE(}) -> terminal: }
+Action: reduce ('Statement', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 22]
+Semantic stack depth: 16
+Next token: RBRACE(}) -> terminal: }
+Action: reduce ('StatementList', 0)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 203]
+Semantic stack depth: 16
+Next token: RBRACE(}) -> terminal: }
+Action: shift 205
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 12, 30, 68, 106, 158, 176, 193, 197, 200, 203, 205]
+Semantic stack depth: 17
+Next token: RBRACE(}) -> terminal: }
+Action: reduce ('IfStatement', 1)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 25]
+Semantic stack depth: 7
+Next token: RBRACE(}) -> terminal: }
+Action: reduce ('Statement', 2)
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 50]
+Semantic stack depth: 7
+Next token: RBRACE(}) -> terminal: }
+Action: reduce ('StatementList', 1)
+
+Stack: [0, 7, 8, 9, 10, 11, 21]
+Semantic stack depth: 6
+Next token: RBRACE(}) -> terminal: }
+Action: shift 49
+
+Stack: [0, 7, 8, 9, 10, 11, 21, 49]
+Semantic stack depth: 7
+Next token: $($) -> terminal: $
+Action: reduce ('MainFunction', 0)
+
+Stack: [0, 6]
+Semantic stack depth: 1
+Next token: $($) -> terminal: $
+Action: reduce ('Program', 0)
+
+Stack: [0, 5]
+Semantic stack depth: 1
+Next token: $($) -> terminal: $
+Action: accept 
+Input accepted!

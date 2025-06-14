@@ -1,0 +1,45 @@
+======================================================================
+THREE-ADDRESS CODE OPTIMIZATION REPORT
+======================================================================
+
+SUMMARY:
+   Original instructions: 21
+   Optimized instructions: 2
+   Instructions eliminated: 19
+   Reduction percentage: 90.5%
+
+OPTIMIZATION TECHNIQUES APPLIED:
+   • Constants Folded: 0 optimizations
+   • Copy Propagations: 0 optimizations
+   • Variables Eliminated: 0 optimizations
+
+ORIGINAL THREE-ADDRESS CODE:
+----------------------------------------
+ 1: function main:
+ 2: t0 = 5
+ 3: declare integer x
+ 4: x = t0
+ 5: t1 = 10
+ 6: declare integer y
+ 7: y = t1
+ 8: t2 = x is less than y
+ 9: declare boolean result
+10: result = t2
+11: t3 = 0
+12: declare integer sum
+13: sum = t3
+14: if result goto L0
+15: goto L1
+16: L0:
+17: t4 = x add y
+18: sum = t4
+19: goto L1
+20: L1:
+21: return sum
+
+OPTIMIZED THREE-ADDRESS CODE:
+----------------------------------------
+ 1: function main:
+ 2:     return 15
+
+======================================================================

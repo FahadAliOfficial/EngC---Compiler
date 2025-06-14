@@ -100,7 +100,7 @@ class ScannerError(Exception):
 class LexicalScanner:
     
     # near the top of your scanner class, define:
-    KEYWORDS = {'if','else','for','while','main','do'}
+    KEYWORDS = {'if','else','for','while','main','do', 'return'}
     TYPES    = {'integer','float','string','boolean'}
     BOOLS    = {'true','false'}
     ARITH_OP = {'add','subtract','multiply','divide','remainder','power'}

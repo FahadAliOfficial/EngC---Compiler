@@ -1,9 +1,7 @@
 import copy
-import pandas as pd
 import re
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
-import numpy as np
 
 
 def create_ast_png(ast_node, filename="parseTree.png"):
@@ -39,32 +37,47 @@ def create_ast_png(ast_node, filename="parseTree.png"):
         'default': '#BDC3C7'
     }
     
-    # Calculate node width based on label size
-    def get_node_width(node):
+    # Calculate node dimensions more accurately
+    def get_node_dimensions(node):
         label = node.type
         if hasattr(node, 'value') and node.value:
             label += f"\n{node.value}"
-        return max(2.0, 0.5 * len(label))  # Minimum width of 2.0
+        
+        # Split by lines to handle multi-line labels
+        lines = label.split('\n')
+        max_line_length = max(len(line) for line in lines)
+        num_lines = len(lines)
+        
+        # Calculate width and height with proper padding
+        width = max(2.0, max_line_length * 0.15 + 1.0)  # More generous width calculation
+        height = max(0.8, num_lines * 0.4 + 0.4)  # Height based on number of lines
+        
+        return width, height
     
-    # First pass: Calculate subtree widths
+    # First pass: Calculate subtree widths with better spacing
     subtree_widths = {}
     
     def calc_subtree_width(node):
+        node_width, _ = get_node_dimensions(node)
+        
         if not hasattr(node, 'children') or not node.children:
-            width = get_node_width(node)
+            width = node_width
         else:
-            # Calculate total width needed for children with padding
+            # Calculate total width needed for children with generous padding
             children_width = 0
+            child_widths = []
+            
             for child in node.children:
                 child_width = calc_subtree_width(child)
-                children_width += child_width + 1.0  # Add 1.0 as padding between siblings
+                child_widths.append(child_width)
+                children_width += child_width
             
-            # Remove extra padding from last child
-            if node.children:
-                children_width -= 1.0
-                
-            # Node width is max of its own label width and children's total width
-            node_width = get_node_width(node)
+            # Add spacing between siblings - more generous spacing
+            if len(node.children) > 1:
+                sibling_spacing = 2.5 * (len(node.children) - 1)  # Increased from 1.5
+                children_width += sibling_spacing
+            
+            # Node width is max of its own width and children's total width
             width = max(node_width, children_width)
         
         subtree_widths[id(node)] = width
@@ -73,54 +86,45 @@ def create_ast_png(ast_node, filename="parseTree.png"):
     # Calculate overall tree width
     total_width = calc_subtree_width(ast_node)
     
-    # Second pass: Calculate actual positions
+    # Second pass: Calculate actual positions with better spacing
     positions = {}
     
     def calculate_positions(node, level, x_center):
-        y_pos = -level * 3.5  # Increased vertical spacing
+        y_pos = -level * 3.0  # Increased vertical spacing
         positions[id(node)] = (x_center, y_pos)
         
         if hasattr(node, 'children') and node.children:
-            # Calculate start position for first child
             child_count = len(node.children)
             
             if child_count == 1:
                 # Single child is centered under parent
                 calculate_positions(node.children[0], level + 1, x_center)
             else:
-                # Calculate positions for multiple children
-                total_child_width = sum(subtree_widths[id(child)] for child in node.children)
-                total_padding = (child_count - 1) * 2.0  # Increased padding between siblings
+                # Calculate positions for multiple children with better distribution
+                child_widths = [subtree_widths[id(child)] for child in node.children]
+                total_child_width = sum(child_widths)
+                total_spacing = 2.5 * (child_count - 1)  # Consistent with calc_subtree_width
                 
-                # Start position
-                current_x = x_center - (total_child_width + total_padding) / 2
+                # Start position - center the children under the parent
+                start_x = x_center - (total_child_width + total_spacing) / 2
                 
-                for child in node.children:
-                    child_width = subtree_widths[id(child)]
+                current_x = start_x
+                for i, child in enumerate(node.children):
+                    child_width = child_widths[i]
                     child_center = current_x + child_width / 2
                     calculate_positions(child, level + 1, child_center)
-                    current_x += child_width + 2.0  # Move to next child position with padding
+                    current_x += child_width + 2.5  # Move to next child position
     
     # Start positioning from the center
     calculate_positions(ast_node, 0, total_width / 2)
     
-    # Create figure with dynamic sizing based on tree width
-    fig_width = max(20, total_width * 1.2)  # Minimum width of 20, but scale up for wide trees
-    fig_height = 14
+    # Create figure with better dynamic sizing
+    fig_width = max(12, total_width * 0.8)  # Better scaling factor
+    fig_height = 16  # Increased height for better spacing
     fig, ax = plt.subplots(figsize=(fig_width, fig_height), dpi=200)
     
-    # Determine good aspect ratio
-    x_coords = [pos[0] for pos in positions.values()]
-    y_coords = [pos[1] for pos in positions.values()]
-    
-    if x_coords and y_coords:
-        x_range = max(x_coords) - min(x_coords)
-        y_range = max(y_coords) - min(y_coords) 
-        
-        if y_range > 0 and x_range > 0:
-            # Set aspect ratio that ensures enough vertical space
-            aspect_ratio = 0.5 * x_range / y_range
-            ax.set_aspect(aspect_ratio)
+    # Set a good aspect ratio
+    ax.set_aspect('equal')
     
     # Remove axes
     ax.set_xticks([])
@@ -141,22 +145,23 @@ def create_ast_png(ast_node, filename="parseTree.png"):
             for child in node.children:
                 child_pos = positions[id(child)]
                 ax.plot([pos[0], child_pos[0]], [pos[1], child_pos[1]], 
-                       'k-', linewidth=1.5, alpha=0.6, zorder=1)
+                       'k-', linewidth=2, alpha=0.7, zorder=1)
         
-        # Draw node
+        # Draw node with proper dimensions
         label = node.type
         if hasattr(node, 'value') and node.value:
             label += f"\n{node.value}"
         
         color = colors.get(node.type, colors['default'])
         
-        # Scale box size based on label length
-        box_width = min(max(1.2, len(label) * 0.2), 4.0)
-        box_height = 0.8 if '\n' in label else 0.5
+        # Get proper dimensions for the box
+        box_width, box_height = get_node_dimensions(node)
         
+        # Create the box with rounded corners
         box = FancyBboxPatch(
-            (pos[0] - box_width/2, pos[1] - box_height/2), box_width, box_height,
-            boxstyle="round,pad=0.3",
+            (pos[0] - box_width/2, pos[1] - box_height/2), 
+            box_width, box_height,
+            boxstyle="round,pad=0.15",  # Reduced padding for tighter fit
             facecolor=color,
             edgecolor='#2C3E50',
             linewidth=1.5,
@@ -164,10 +169,13 @@ def create_ast_png(ast_node, filename="parseTree.png"):
         )
         ax.add_patch(box)
         
+        # Add text with proper sizing
+        fontsize = min(10, max(7, 120 / len(label.replace('\n', ''))))  # Dynamic font size
         ax.text(pos[0], pos[1], label, 
-               fontsize=9, fontweight='bold',
+               fontsize=fontsize, fontweight='bold',
                ha='center', va='center',
-               color='#2C3E50', zorder=3)
+               color='#2C3E50', zorder=3,
+               linespacing=0.9)  # Tighter line spacing
         
         # Draw children
         if hasattr(node, 'children') and node.children:
@@ -176,24 +184,35 @@ def create_ast_png(ast_node, filename="parseTree.png"):
     
     draw_tree(ast_node)
     
-    # Set limits with margins
+    # Set limits with proper margins
     if positions:
         x_coords = [pos[0] for pos in positions.values()]
         y_coords = [pos[1] for pos in positions.values()]
-        margin_x = (max(x_coords) - min(x_coords)) * 0.1 + 2.0
-        margin_y = (max(y_coords) - min(y_coords)) * 0.1 + 1.0
+        
+        # Calculate margins based on the tree size
+        x_range = max(x_coords) - min(x_coords)
+        y_range = max(y_coords) - min(y_coords)
+        
+        margin_x = max(2.0, x_range * 0.15)  # At least 2.0, or 15% of range
+        margin_y = max(1.5, y_range * 0.15)  # At least 1.5, or 15% of range
+        
         ax.set_xlim(min(x_coords) - margin_x, max(x_coords) + margin_x)
         ax.set_ylim(min(y_coords) - margin_y, max(y_coords) + margin_y)
     
     # Add title
     plt.title("Parse Tree", 
-             fontsize=16, fontweight='bold', color='#2C3E50', pad=10)
+             fontsize=18, fontweight='bold', color='#2C3E50', pad=20)
     
-    # Save
+    # Save with high quality
     plt.tight_layout()
     plt.savefig(filename, dpi=300, bbox_inches='tight', 
-               facecolor='#F8F9FA', edgecolor='none')
+               facecolor='#F8F9FA', edgecolor='none', 
+               pad_inches=0.5)  # Added padding around the figure
     plt.close()
+    
+    print(f"✅ Parse tree saved as: {filename}")
+    return filename
+
 
 
 
@@ -682,23 +701,23 @@ class LR1Parser:
         self.start_symbol = 'Program'
 
         # Debug output
-        # print("----- PHASE 0: GRAMMAR DEFINITION -----")
-        # print(f"==========================================")
-        # print(f"Terminals count: {len(self.terminals)}")
-        # print(f"Terminals: {self.terminals}")
-        # print(f"==========================================")
-        # print(f"Non-terminals count: {len(self.non_terminals)}")
-        # print(f"Non-terminals: {self.non_terminals}")
-        # print(f"==========================================")
-        # print(f"Start Symbol: {self.start_symbol}")
-        # print("ALL Production Rules:")
-        # print(f"Productions count: {len(self.productions)}")
-        # for nt in self.non_terminals:
-        #     if nt in self.productions:
-        #         for i, prod in enumerate(self.productions[nt]):
-        #             print(f"{nt} -> {' '.join(prod)}")
-        # print("\n")
-        # print(f"==========================================\n")
+        print("----- PHASE 0: GRAMMAR DEFINITION -----")
+        print("==========================================")
+        print(f"Terminals count: {len(self.terminals)}")
+        print(f"Terminals: {self.terminals}")
+        print("==========================================")
+        print(f"Non-terminals count: {len(self.non_terminals)}")
+        print(f"Non-terminals: {self.non_terminals}")
+        print("==========================================")
+        print(f"Start Symbol: {self.start_symbol}")
+        total_productions = sum(len(v) for v in self.productions.values())
+        print(f"Productions count: {total_productions}")
+        for nt in self.non_terminals:
+            if nt in self.productions:
+                for i, prod in enumerate(self.productions[nt]):
+                    print(f"{nt} -> {' '.join(prod)}")
+        print("\n")
+        print("==========================================\n")
 
         return (self.terminals, self.non_terminals, self.productions, self.start_symbol)
 
@@ -713,16 +732,16 @@ class LR1Parser:
             self.augmented_grammar[k] = copy.deepcopy(v) # deepcopy is used to avoid shallow copy issues, since we are modifying the grammar in place.
         if self.augmented_start not in self.non_terminals: self.non_terminals.append(self.augmented_start)
 
-        # print("----- PHASE 1-A: AUGMENTED GRAMMAR -----")
-        # print(f"Augmented Start Symbol: {self.augmented_start}")
-        # print("Augmented Production Rules:")
-        # print(f"{self.augmented_start} -> {' '.join(self.augmented_grammar[self.augmented_start][0])}")
-        # for nt in self.productions:
-        #     for i, prod in enumerate(self.productions[nt]):
-        #         print(f"{nt} -> {' '.join(prod)}")
+        print("----- PHASE 1-A: AUGMENTED GRAMMAR -----")
+        print(f"Augmented Start Symbol: {self.augmented_start}")
+        print("Augmented Production Rules:")
+        print(f"{self.augmented_start} -> {' '.join(self.augmented_grammar[self.augmented_start][0])}")
+        for nt in self.productions:
+            for i, prod in enumerate(self.productions[nt]):
+                print(f"{nt} -> {' '.join(prod)}")
             
-        # print("\n")
-        # print("==========================================\n")
+        print("\n")
+        print("==========================================\n")
 
         return self.augmented_grammar
     def make_lr1_item(self, non_terminal, production, dot_position, lookahead):
@@ -737,10 +756,10 @@ class LR1Parser:
     def get_initial_item_set(self): # now lets make our first LRItem using the augmented productions. it should be a simple: [s' -> DOT program, $ ]
         initial_prod = self.augmented_grammar[self.augmented_start][0]  # S' -> Program retrieved from the dict
         initial_item = self.make_lr1_item(self.augmented_start, initial_prod, 0, '$') # add the dot and lookahead to make the LRItem
-        # print("----- PHASE 1-B: INITIAL LR(1) ITEM -----")
-        # print(f"Initial Item: {self.display_lr1_item(initial_item)}")
-        # print("\n")
-        # print("==========================================")
+        print("----- PHASE 1-B: INITIAL LR(1) ITEM -----")
+        print(f"Initial Item: {self.display_lr1_item(initial_item)}")
+        print("\n")
+        print("==========================================")
         return [initial_item]
         
     def compute_first_sets(self):
@@ -777,10 +796,10 @@ class LR1Parser:
                             self.first_sets[nt].add('ε')
                             changed = True
         
-        # print("----- PHASE 2: FIRST SETS -----")
-        # for nt in ['Program', 'MainFunction', 'Statement', 'Expression']:
-        #     print(f"FIRST({nt}) = {self.first_sets[nt]}")
-        # print("\n")
+        print("----- PHASE 2: FIRST SETS -----")
+        for nt in ['Program', 'MainFunction', 'Statement', 'Expression']:
+            print(f"FIRST({nt}) = {self.first_sets[nt]}")
+        print("\n")
         return self.first_sets
     def compute_first_of_string(self, symbols):
         """
@@ -868,10 +887,10 @@ class LR1Parser:
                         self.transitions[(idx, sym)] = len(self.item_sets) - 1
             idx += 1
 
-        # print("----- PHASE 5: CANONICAL COLLECTION OF LR(1) ITEMS -----")
-        # print(f"Total states: {len(self.item_sets)}")
-        # print(f"Total transitions: {len(self.transitions)}")
-        # print("\n")
+        print("----- PHASE 5: CANONICAL COLLECTION OF LR(1) ITEMS -----")
+        print(f"Total states: {len(self.item_sets)}")
+        print(f"Total transitions: {len(self.transitions)}")
+        print("\n")
 
         return (self.item_sets, self.transitions)
         
@@ -1012,12 +1031,12 @@ class LR1Parser:
                 if (state_idx, nt) in self.transitions:
                     self.goto_table[(state_idx, nt)] = self.transitions[(state_idx, nt)]
 
-        # print("----- PHASE 6: PARSING TABLES -----")
-        # print(f"Total ACTION entries: {len(self.action_table)}")
-        # print(f"Total GOTO entries: {len(self.goto_table)}")
-        # print(f"Conflicts detected before resolution: {len(conflicts_before_resolution)}")
-        # print(f"Conflicts remaining after resolution: {len(conflicts_after_resolution)}")
-        # print("\n")
+        print("----- PHASE 6: PARSING TABLES -----")
+        print(f"Total ACTION entries: {len(self.action_table)}")
+        print(f"Total GOTO entries: {len(self.goto_table)}")
+        print(f"Conflicts detected before resolution: {len(conflicts_before_resolution)}")
+        print(f"Conflicts remaining after resolution: {len(conflicts_after_resolution)}")
+        print("\n")
         
         return self.action_table, self.goto_table, conflicts_after_resolution
     def match_token_to_terminal(self, token):
@@ -1472,7 +1491,7 @@ class LR1Parser:
                         close_count = int(close_match.group(1))
                         
                         if open_count > close_count:
-                            return f"Syntax error: Missing {open_count - close_count} closing brace(s) or parenthesis/parentheses"
+                            return f"Syntax error: Missing {open_count - close_count} semicolon or closing brace(s) or parenthesis/parentheses"
                         else:
                             return f"Syntax error: {close_count - open_count} too many closing brace(s) or parenthesis/parentheses"
         

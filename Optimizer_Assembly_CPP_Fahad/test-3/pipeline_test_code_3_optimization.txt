@@ -1,0 +1,36 @@
+======================================================================
+THREE-ADDRESS CODE OPTIMIZATION REPORT
+======================================================================
+
+SUMMARY:
+   Original instructions: 12
+   Optimized instructions: 2
+   Instructions eliminated: 10
+   Reduction percentage: 83.3%
+
+OPTIMIZATION TECHNIQUES APPLIED:
+   • Constants Folded: 0 optimizations
+   • Copy Propagations: 0 optimizations
+   • Variables Eliminated: 0 optimizations
+
+ORIGINAL THREE-ADDRESS CODE:
+----------------------------------------
+ 1: function main:
+ 2: t0 = 5
+ 3: declare float radius
+ 4: radius = t0
+ 5: t1 = 3.14
+ 6: declare float pi
+ 7: pi = t1
+ 8: t2 = pi multiply radius
+ 9: t3 = t2 multiply radius
+10: declare float area
+11: area = t3
+12: return area
+
+OPTIMIZED THREE-ADDRESS CODE:
+----------------------------------------
+ 1: function main:
+ 2:     return 78.5
+
+======================================================================
